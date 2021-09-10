@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import dj_database_url
 from django.contrib import messages
-from django.contrib.messages import api
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -164,10 +163,8 @@ MESSAGE_TAGS = {
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' #メール送信
 DEFAULT_FROM_EMAIL = 'newsHunt@herokuapp.com'
 #SendGrid設定
-SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
-EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
+EMAIL_HOST_USER = 'apikey'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -176,8 +173,8 @@ try:
 except ImportError:
     pass
 
-#DEBUG = Falseの時に
 if not DEBUG:
     SECRET_KEY = os.environ['SECRET_KEY']
+    EMAIL_HOST_PASSWORD = os.environ['SENDGRID_API_KEY']
     import django_heroku
     django_heroku.settings(locals(),databases=False)
