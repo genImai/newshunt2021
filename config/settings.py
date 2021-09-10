@@ -125,6 +125,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 #集合させる指定のフォルダ
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 #allauth設定
 AUTHNETICATION_BACKENDS = (
