@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import dj_database_url
 from django.contrib import messages
+from django.contrib.messages import api
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -148,7 +149,7 @@ ACCOUNT_FORMS = {
 }
 ACCOUNT_ADAPTER = 'accounts.adapter.AccountAdapter'
 
-SITE_ID = 5
+SITE_ID = 15
 
 #カスタムユーザーモデル使用
 AUTH_USER_MODEL = 'accounts.User'
@@ -160,7 +161,15 @@ MESSAGE_TAGS = {
 }
 
 #メール設定
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #コンソールでメールを出力
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' #メール送信
+DEFAULT_FROM_EMAIL = 'newsHunt@herokuapp.com'
+#SendGrid設定
+SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
+EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 try:
     from .local_settings import *
