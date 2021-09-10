@@ -12,6 +12,6 @@ def guest_login(request):
     return redirect('index')
 
 def guest_logout(request):
-    Setting.objects.filter(id='e24d1eb5-6afa-4f12-b25f-6b8449332446').delete()
+    Setting.objects.filter(id='44b3fa25-5e84-4d7a-8cf2-46185f68c009').delete()
     logout(request)
     return redirect('account_login')
