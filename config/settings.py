@@ -81,6 +81,7 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': '',
         'PORT': '',
+        'OPTIONS': {'sql_mode': 'STRICT_TRANS_TABLES',}
     }
 }
 db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=False)
