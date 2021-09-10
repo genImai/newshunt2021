@@ -34,8 +34,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.twitter',
-    'allauth.socialaccount.providers.google',
     'django_boost',
     'accounts',
     'newsapp',
