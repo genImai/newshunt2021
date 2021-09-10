@@ -19,7 +19,7 @@
         <nav class="navbar navbar-light bg-secondary">
             <div class="container-fluid justify-content-end">
                 {% if user.is_authenticated %}
-                    {% if user.email == 'guest@newshunt2021.com' %}
+                    {% if user.email == 'guest@herokuapp.com' %}
                         <span class="navbar-text">
                             ゲストログイン中です。
                         </span>
@@ -29,7 +29,7 @@
                         </span>
                     {% endif %}
                 <a class="btn btn-primary me-2" 
-                {% if user.email == 'guest@newshunt2021.com' %}
+                {% if user.email == 'guest@herokuapp.com' %}
                 href="{% url 'account_guest_logout' %}"{% else %}
                 href="{% url 'account_logout' %}"{% endif %}>ログアウト<i class="fas fa-door-open"></i></a>
                 {% else %}

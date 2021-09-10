@@ -7,7 +7,7 @@ from django.contrib.auth import login, logout
 
 #ゲストログイン・ログアウト
 def guest_login(request):
-    guest_user = User.objects.get(email = 'guest@newshunt2021.com')
+    guest_user = User.objects.get(email = 'guest@herokuapp.com')
     login (request,guest_user,backend='django.contrib.auth.backends.ModelBackend')
     return redirect('index')
 
