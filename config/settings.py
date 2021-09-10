@@ -20,7 +20,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DEBUG = False
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -149,7 +148,7 @@ ACCOUNT_FORMS = {
 }
 ACCOUNT_ADAPTER = 'accounts.adapter.AccountAdapter'
 
-SITE_ID = 5
+SITE_ID = 3
 
 #カスタムユーザーモデル使用
 AUTH_USER_MODEL = 'accounts.User'
@@ -160,11 +159,15 @@ MESSAGE_TAGS = {
     messages.error: 'danger',
 }
 
+#メール設定
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #コンソールでメールを出力
+
 try:
     from .local_settings import *
 except ImportError:
     pass
 
+#DEBUG = Falseの時に
 if not DEBUG:
     SECRET_KEY = os.environ['SECRET_KEY']
     import django_heroku
