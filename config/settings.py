@@ -81,10 +81,9 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': '',
         'PORT': '',
-        'OPTIONS': {'ssl': {'ca':'/path/to/ca-cert.pem', 'cert':'/path/to/cert.pem', 'key':'/path/to/key.pem'},},
     }
 }
-db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
+db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=False)
 DATABASES['default'].update(db_from_env)
 
 # Password validation
@@ -177,4 +176,4 @@ if not DEBUG:
     SECRET_KEY = os.environ['SECRET_KEY']
     EMAIL_HOST_PASSWORD = os.environ['SENDGRID_API_KEY']
     import django_heroku
-    django_heroku.settings(locals())
+    django_heroku.settings(locals(),databases=False)
