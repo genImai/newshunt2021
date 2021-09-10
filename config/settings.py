@@ -148,7 +148,7 @@ ACCOUNT_FORMS = {
 }
 ACCOUNT_ADAPTER = 'accounts.adapter.AccountAdapter'
 
-SITE_ID = 3
+SITE_ID = 5
 
 #カスタムユーザーモデル使用
 AUTH_USER_MODEL = 'accounts.User'
