@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}ユーザー登録{% endblock title %}
+{% block h1 %}ユーザー登録{% endblock h1 %}
+{% block content %}
+<form method="POST" action="">{% csrf_token %}
+    <div class="mb-3">
+        <label for="id_email" class="form-label">メールアドレス</label>
+        <input type="email" class="form-control" id="id_email" name="email" value="{% if form.email.value %}{{form.email.value}}{% endif %}" placeholder="メールアドレス">
+        {% if form.email.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{form.email.errors}}
+            </div>
+        {% endif %}
+    </div><br>
+    <div>
+        <label for="id_sex" class="form-label">性別</label><br>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sex" id="id_man" value="男性" {% if form.sex.value == '男性' %}checked{% endif %}>
+            <label class="form-check-label" for="id_man">男性</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sex" id="id_woman" value="女性" {% if form.sex.value == '女性' %}checked{% endif %}>
+            <label class="form-check-label" for="id_woman">女性</label>
+        </div>
+    </div><br>
+    {% if form.sex.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{form.sex.errors}}
+        </div>
+    {% endif %}
+    <div>
+        <label for="id_age" class="form-label">年齢</label>
+        {{form.age}}
+    </div><br>
+    {% if form.age.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{form.age.errors}}
+        </div>
+    {% endif %}
+    <div class="mb-3">
+        <label for="id_password1" class="form-label">パスワード ※半角英数8文字以上</label>
+        <input type="password" class="form-control" id="id_password1" placeholder="半角英数8文字以上" name="password1" value="{% if form.password1.value %}{{form.password1.value}}{% endif %}">
+    </div>
+    {% if form.password1.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{form.password1.errors}}
+        </div>
+    {% endif %}
+    <div class="mb-3">
+        <label for="id_password2" class="form-label">パスワード（確認）</label>
+        <input type="password" class="form-control" id="id_password2" placeholder="半角英数8文字以上" name="password2" value="">
+    </div><br>
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger" role="alert">
+            {{form.non_field_errors}}
+        </div>
+    {% endif %}
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button class="btn btn-success" type="submit">登録 <i class="fas fa-user-plus"></i></button>
+    </div><br>
+</form>
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load boost %}
+{% block title %}ニュース一覧{% endblock title %}
+{% block h1 %}ニュース一覧{% endblock h1 %}
+{% block content %}
+  {% if messages %}
+    <ul class="messages_ul">
+      {% for message in messages %}
+        <li class="alert{% if message.tags %} alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  {% for setting in data %}
+    <ul class="nav nav-tabs bg-light">
+      <li class="nav-item">
+        <a class="nav-link" href="?key={{ setting.key1 }}"><i class="fas fa-search"></i>[{{ setting.key1 }}]</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" {% if setting.key2 ==　'未登録' %}href="{% url 'settingConf' %}"{% else %}href="?key={{ setting.key2 }}"{% endif %}><i class="fas fa-search"></i>[{{ setting.key2 }}]</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" {% if setting.key3 ==　'未登録' %}href="{% url 'settingConf' %}"{% else %}href="?key={{ setting.key3 }}"{% endif %}><i class="fas fa-search"></i>[{{ setting.key3 }}]</a>
+      </li>
+    </ul>
+    <table class="table table-dark table-striped">
+      <tbody>
+        {% for title,link in titles|zip:links %}
+        <tr class="table-dark">
+          <td><a href="{{ link }}" target="blank" rel="noopener noreferrer">{{ title }}</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endfor %}
+{% endblock content %}

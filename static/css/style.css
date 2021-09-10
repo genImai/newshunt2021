@@ -1,0 +1,15 @@
+#head {
+    position: relative; 
+
+}
+
+#headtitle {
+    position: absolute;
+    color: #f5f5f5;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+

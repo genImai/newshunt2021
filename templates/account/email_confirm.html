@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block h1 %}登録確認{% endblock h1 %}
+{% block content %}
+    {% if confirmation %}
+        <p>ユーザー登録を確定するには下のボタンを押してください。</p>
+        <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">{% csrf_token %}
+            <button type="submit" class="btn btn-success">登録確定</button>
+        </form>
+    {% else %}
+        {% url 'account_email' as email_url %}
+        <p>リンクの有効期限が過ぎています。<a> href="{{ email_url }}"</a>.</p>
+    {% endif %}
+{% endblock content %}

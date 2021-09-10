@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}設定{% endblock title %}
+{% block h1 %}設定{% endblock h1 %}
+{% block content %}
+    {% if messages %}
+        <ul class="messages_ul">
+            {% for message in messages %}
+                <li class="alert{% if message.tags %} alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <br><h4>・検索キーワード</h4>
+    <p class="text-warning">任意のキーワードを最低１つ登録してください</p>
+    <form method="POST">{% csrf_token %}
+        <div class="mb-3">
+            <label for="id_key1" class="form-label">キーワード1（入力必須）</label>
+            <input type="text" class="form-control" id="id_key1" placeholder="キーワード" name="key1" value="{{form.key1.value}}">
+        </div>
+        <div class="mb-3">
+            <label for="id_key2" class="form-label">キーワード2</label>
+            <input type="text" class="form-control" id="id_key2" placeholder="キーワード" name="key2" value="{{form.key2.value}}">
+        </div>
+        <div class="mb-3">
+            <label for="id_key3" class="form-label">キーワード3</label>
+            <input type="text" class="form-control" id="id_key3" placeholder="キーワード" name="key3" value="{{form.key3.value}}">
+        </div><br>
+        <h4>・検索対象サイト</h4></br>
+        <div class="form-check form-switch">
+            {{ form.site1 }}
+            <label class="form-check-label" for="id_site1">yahoo!ニュース</label>
+        </div>
+        </br>
+        <div class="form-check form-switch">
+            {{ form.site2 }}
+            <label class="form-check-label" for="id_site2">日経電子版</label>
+        </div>
+        </br>
+        <div class="form-check form-switch">
+            {{ form.site3 }}
+            <label class="form-check-label" for="id_site3">株探（材料）</label>
+        </div>
+        </br>
+        <div class="form-check form-switch">
+            {{ form.site4 }}
+            <label class="form-check-label" for="id_site4">株探（決算）</label>
+        </div>
+        </br>
+        <div class="form-check form-switch">
+            {{ form.site5 }}
+            <label class="form-check-label" for="id_site5">時事ドットコム</label>
+        </div>
+        </br>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-success" type="submit">登録 <i class="fas fa-check"></i></button>
+            <a class="btn btn-secondary" href="{% url 'index' %}" role="button">ニュース一覧へ<i class="far fa-newspaper"></i></a>
+        </div><br>
+    </form>
+{% endblock content %}

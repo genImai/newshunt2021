@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block h1 %}送信完了（ユーザー登録）{% endblock h1 %}
+{% block content %}
+	{% if messages %}
+		<ul class="messages_ul">
+			{% for message in messages %}
+				<li class="alert{% if message.tags %} alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+	<p class="h2">確認メールを送信しました。</p>
+	<p>受信ボックスを確認してください。</p>
+{% endblock content %}
