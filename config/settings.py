@@ -12,8 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import dj_database_url
-from django.contrib import messages
-
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -157,8 +156,8 @@ AUTH_USER_MODEL = 'accounts.User'
 
 #メッセージ
 MESSAGE_TAGS = {
-    messages.success: 'success',
-    messages.error: 'danger',
+    messages.SUCCESS: 'success',
+    messages.ERROR: 'danger',
 }
 
 #メール設定

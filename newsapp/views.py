@@ -1,7 +1,6 @@
 from django.urls.base import reverse
 from newsapp.forms import SettingForm
 from newsapp.models import Setting
-from django.http import HttpResponse
 from allauth.account.decorators import verified_email_required
 from bs4 import BeautifulSoup
 from django.shortcuts import redirect, render
@@ -10,8 +9,9 @@ from django.views.generic import CreateView, UpdateView
 import requests
 import re
 from concurrent.futures import ThreadPoolExecutor
-from django.contrib import messages
 from urllib.parse import urlencode
+from django.contrib import messages
+
 
 # Create your views here.
 
@@ -148,6 +148,10 @@ class SettingCreateView(LoginRequiredMixin,CreateView):
     def form_valid(self, form):
         qryset =  form.save(commit=False)
         qryset.id = self.request.user
+        if qryset.key2 == '':
+            qryset.key2 = '未登録'
+        if qryset.key3 == '':
+            qryset.key3 = '未登録'
         qryset.save()
         messages.success(self.request, '登録完了しました。')
         return super().form_valid(form)
@@ -168,12 +172,16 @@ class SettingUpdateView(LoginRequiredMixin,UpdateView):
         return reverse('update',kwargs={'pk':self.object.pk})
     
     def form_valid(self, form):
-        qryset =  form.save(commit=False)
+        qryset = form.save(commit=False)
         qryset.id = self.request.user
+        if qryset.key2 == '':
+            qryset.key2 = '未登録'
+        if qryset.key3 == '':
+            qryset.key3 = '未登録'
         qryset.save()
-        messages.success(self.request, '設定を登録しました。')
+        messages.success(self.request, '設定を更新しました。')
         return super().form_valid(form)
     
     def form_invalid(self, form):
-        messages.error(self.request, '設定を登録できません。')
+        messages.error(self.request, '設定を更新できません。')
         return super().form_invalid(form)
