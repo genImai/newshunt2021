@@ -19,8 +19,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DEBUG = False
 
-# Application definition
+ALLOWED_HOSTS = ["newshunt2021.herokuapp.com"]
 
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -125,7 +126,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 #集合させる指定のフォルダ
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-STATICFILES_STORAGE= 'django.contrib.staticfiles.storage.StaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #allauth設定
 AUTHNETICATION_BACKENDS = (
@@ -177,4 +178,4 @@ if not DEBUG:
     SECRET_KEY = os.environ['SECRET_KEY']
     EMAIL_HOST_PASSWORD = os.environ['SENDGRID_API_KEY']
     import django_heroku
-    django_heroku.settings(locals(),databases=False,logging=False)
+    django_heroku.settings(locals(),databases=False,)
