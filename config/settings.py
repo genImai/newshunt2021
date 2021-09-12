@@ -19,37 +19,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DEBUG = False
 
-LOG_BASE_DIR = os.path.join("/var", "log", "app")
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {"simple": {"format": "%(asctime)s [%(levelname)s] %(message)s"}},
-    "handlers": {
-        "info": {
-            "level": "INFO",
-            "class": "logging.FileHandler",
-            "filename": os.path.join(LOG_BASE_DIR, "info.log"),
-            "formatter": "simple",
-        },
-        "warning": {
-            "level": "WARNING",
-            "class": "logging.FileHandler",
-            "filename": os.path.join(LOG_BASE_DIR, "warning.log"),
-            "formatter": "simple",
-        },
-        "error": {
-            "level": "ERROR",
-            "class": "logging.FileHandler",
-            "filename": os.path.join(LOG_BASE_DIR, "error.log"),
-            "formatter": "simple",
-        },
-    },
-    "root": {
-        "handlers": ["info", "warning", "error"],
-        "level": "INFO",
-    },
-}
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -156,8 +125,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 #集合させる指定のフォルダ
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+STATICFILES_STORAGE= 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 #allauth設定
 AUTHNETICATION_BACKENDS = (
