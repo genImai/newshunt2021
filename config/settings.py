@@ -81,7 +81,7 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': '',
         'PORT': '',
-        'OPTIONS': {'sql_mode': 'STRICT_TRANS_TABLES',}
+        'OPTIONS': {'sql_mode': 'STRICT_TRANS_TABLES','sslmode': 'require',}
     }
 }
 DATABASES['default'] = dj_database_url.config(conn_max_age=600)
@@ -177,4 +177,4 @@ if not DEBUG:
     SECRET_KEY = os.environ['SECRET_KEY']
     EMAIL_HOST_PASSWORD = os.environ['SENDGRID_API_KEY']
     import django_heroku
-    django_heroku.settings(locals(),)
+    django_heroku.settings(locals())
