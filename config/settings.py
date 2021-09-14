@@ -81,8 +81,7 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': '',
         'PORT': '',
-        'OPTIONS': {'sql_mode': 'STRICT_TRANS_TABLES',
-                    'ssl': {'ca':'ca_path', 'key':'key_path', 'cert':'cert_path'}},
+        'OPTIONS': {'ssl': {'ca':'/path/to/cert.pem', 'cert':'/path/to/cert.pem', 'key':'/path/to/key.pem'},},
     }
 }
 db_from_env = dj_database_url.config()
