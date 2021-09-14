@@ -27,3 +27,14 @@ class SettingForm(forms.ModelForm):
             'site4': forms.CheckboxInput(attrs={'class':'form-check-input'}),
             'site5': forms.CheckboxInput(attrs={'class':'form-check-input'}),
         }
+        
+    def clean(self):
+        cleaned_data = super(SettingForm, self).clean()
+        site1 = self.cleaned_data.get('site1')
+        site2 = self.cleaned_data.get('site2')
+        site3 = self.cleaned_data.get('site3')
+        site4 = self.cleaned_data.get('site4')
+        site5 = self.cleaned_data.get('site5')
+        if site1==False and site2==False and site3==False and site4==False and site5==False:
+            raise forms.ValidationError("検索対象サイトを最低１つ選択してください。")
+        return cleaned_data

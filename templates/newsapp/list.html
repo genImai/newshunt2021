@@ -25,9 +25,9 @@
     <table class="table table-dark table-striped">
       <tbody>
         {% for title,link in titles|zip:links %}
-        <tr class="table-dark">
-          <td><a href="{{ link }}" class="text-light" target="blank" rel="noopener noreferrer">{{ title }}</a></td>
-        </tr>
+          <tr class="table-dark">
+            <td><a href="{{ link }}" class="text-light" target="blank" rel="noopener noreferrer">{{ title }}</a></td>
+          </tr>
         {% endfor %}
       </tbody>
     </table>

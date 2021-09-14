@@ -81,11 +81,11 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': '',
         'PORT': '',
-        # 'OPTIONS': {'sql_mode': 'STRICT_TRANS_TABLES',
-        #             'ssl': {'ca':'ca_path', 'key':'key_path', 'cert':'cert_path'}},
+        'OPTIONS': {'sql_mode': 'STRICT_TRANS_TABLES',
+                    'ssl': {'ca':'ca_path', 'key':'key_path', 'cert':'cert_path'}},
     }
 }
-db_from_env = dj_database_url.config(ssl_require=False)
+db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
 # Password validation

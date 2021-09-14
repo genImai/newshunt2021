@@ -20,6 +20,11 @@
             <label for="id_key1" class="form-label">キーワード1（入力必須）</label>
             <input type="text" class="form-control" id="id_key1" placeholder="キーワード" name="key1" value="{{form.key1.value}}">
         </div>
+        {% if form.key1.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{form.key1.errors}}
+            </div>
+        {% endif %}
         <div class="mb-3">
             <label for="id_key2" class="form-label">キーワード2</label>
             <input type="text" class="form-control" id="id_key2" placeholder="キーワード" name="key2" value="{{form.key2.value}}">
@@ -49,6 +54,11 @@
             {{ form.site5 }}
             <label class="form-check-label" for="id_site5">時事ドットコム</label>
         </div></br>
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {{form.non_field_errors}}
+            </div>
+        {% endif %}
         <div class="d-grid gap-2 col-6 mx-auto">
             <button class="btn btn-success" type="submit">登録 <i class="fas fa-check"></i></button>
             <a class="btn btn-secondary" href="{% url 'index' %}" role="button">ニュース一覧へ <i class="far fa-newspaper"></i></a>

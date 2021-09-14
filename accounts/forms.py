@@ -29,7 +29,6 @@ class MyCustomSignupForm(SignupForm):
         model = User
         
     def clean_age(self):
-        cleaned_data = super(MyCustomSignupForm, self).clean()
         age = self.cleaned_data['age']
         if age == '未選択':
             raise forms.ValidationError("年齢を選択してください")
