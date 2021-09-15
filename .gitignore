@@ -5,5 +5,5 @@ db-volumes/
 db.sqlite3
 myenv
 local_settings.py
-DS_Store
+.DS_Store
 bs.py
