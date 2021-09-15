@@ -9,6 +9,7 @@ from django.contrib.auth import login, logout
 def guest_login(request):
     guest_user = User.objects.get(email = 'guest@herokuapp.com')
     login (request,guest_user,backend='django.contrib.auth.backends.ModelBackend')
+    request.session.set_expiry(30)
     return redirect('index')
 
 def guest_logout(request):
