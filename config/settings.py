@@ -149,7 +149,9 @@ ACCOUNT_FORMS = {
 }
 ACCOUNT_ADAPTER = 'accounts.adapter.AccountAdapter'
 
+#セッション設定
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 SITE_ID = 15
 
