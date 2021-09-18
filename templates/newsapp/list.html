@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-{% load boost %}
+{% load static %}
+<link href="{% static 'css/list.css' %}" rel="stylesheet">
 {% block title %}ニュース一覧{% endblock title %}
 {% block h1 %}ニュース一覧{% endblock h1 %}
 {% block content %}
@@ -10,26 +11,124 @@
       {% endfor %}
     </ul>
   {% endif %}
+  <script>
+    $(function(){
+      $('.nav-link').click(function() {
+        $(this).addClass('active');
+      });
+    });
+  </script>
   {% for setting in data %}
-    <ul class="nav nav-tabs bg-light">
+    <ul class="nav nav-pills bg-light">
       <li class="nav-item">
-        <a class="nav-link" href="?key={{ setting.key1 }}"><i class="fas fa-search"></i>[{{ setting.key1 }}]</a>
+        <a class="nav-link" id="key1" href="?key={{ setting.key1 }}"><i class="fas fa-search"></i>[{{ setting.key1 }}]</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" {% if setting.key2 == '未登録' %}href="{% url 'settingConf' %}"{% else %}href="?key={{ setting.key2 }}"{% endif %}><i class="fas fa-search"></i>[{{ setting.key2 }}]</a>
+        <a class="nav-link" id="key2" {% if setting.key2 == '未登録' %}href="{% url 'settingConf' %}"{% else %}href="?key={{ setting.key2 }}"{% endif %}><i class="fas fa-search"></i>[{{ setting.key2 }}]</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" {% if setting.key3 == '未登録' %}href="{% url 'settingConf' %}"{% else %}href="?key={{ setting.key3 }}"{% endif %}><i class="fas fa-search"></i>[{{ setting.key3 }}]</a>
+        <a class="nav-link" id="key3" {% if setting.key3 == '未登録' %}href="{% url 'settingConf' %}"{% else %}href="?key={{ setting.key3 }}"{% endif %}><i class="fas fa-search"></i>[{{ setting.key3 }}]</a>
       </li>
     </ul>
-    <table class="table table-dark table-striped">
-      <tbody>
-        {% for title,link in titles|zip:links %}
-          <tr class="table-dark">
-            <td><a href="{{ link }}" class="text-light" target="blank" rel="noopener noreferrer">{{ title }}</a></td>
+    {% if setting.site1 %}
+      <table class="table bg-light">
+        <thead class="table-dark">
+          <tr>
+            <th class="th-1">Yahoo!ニュース</th><th class="th-2">{{newsCount1}}件ヒット</th>
           </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {% if newsData1 %}
+            {% for site1 in newsData1 %}
+              <tr>
+                <td><a href="{{site1.newsLink1}}">{{site1.newsTitle1}}</a></td><td>{{site1.newsTime1}}</td>
+              </tr>
+            {% endfor %}
+          {% else %}
+              <td><p>現在該当のニュースはありません。</p></td><td>&nbsp;</td>
+          {% endif %}
+        </tbody>
+      </table>
+    {% endif %}
+    {% if setting.site2 %}
+      <table class="table bg-light">
+        <thead class="table-dark">
+          <tr>
+            <th class="th-1">時事ドットネット</th><th class="th-2">{{newsCount2}}件ヒット</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if newsData2 %}
+            {% for site2 in newsData2 %}
+              <tr>
+                <td><a href="{{site2.newsLink2}}">{{site2.newsTitle2}}</a></td><td>{{site2.newsTime2}}</td>
+              </tr>
+            {% endfor %}
+          {% else %}
+              <td><p>現在該当のニュースはありません。</p></td>&nbsp;</td>
+          {% endif %}
+        </tbody>
+      </table>
+    {% endif %}
+    {% if setting.site3 %}
+      <table class="table bg-light">
+        <thead class="table-dark">
+          <tr>
+            <th class="th-1">日本経済新聞（日経電子版）</th><th class="th-2">{{newsCount3}}件ヒット</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if newsData3 %}
+            {% for site3 in newsData3 %}
+              <tr>
+                <td><a href="{{site3.newsLink3}}">{{site3.newsTitle3}}</a></td><td>{{site3.newsTime3}}</td>
+              </tr>
+            {% endfor %}
+          {% else %}
+              <td><p>現在該当のニュースはありません。</p></td><td>&nbsp;</td>
+          {% endif %}
+        </tbody>
+      </table>
+    {% endif %}
+    {% if setting.site4 %}
+      <table class="table bg-light">
+        <thead class="table-dark">
+          <tr>
+            <th class="th-1">ORICON NEWS</th><th class="th-2">{{newsCount4}}件ヒット</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if newsData4 %}
+            {% for site4 in newsData4 %}
+              <tr>
+                <td><a href="{{site4.newsLink4}}">{{site4.newsTitle4}}</a></td><td>{{site4.newsTime4}}</td>
+              </tr>
+            {% endfor %}
+          {% else %}
+              <td><p>現在該当のニュースはありません。</p></td><td>&nbsp;</td>
+          {% endif %}
+        </tbody>
+      </table>
+    {% endif %}
+    {% if setting.site5 %}
+      <table class="table bg-light">
+        <thead class="table-dark">
+          <tr>
+            <th class="th-1">日刊スポーツ</th><th class="th-2">{{newsCount5}}件ヒット</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if newsData5 %}
+            {% for site5 in newsData5 %}
+              <tr>
+                <td><a href="{{site5.newsLink5}}">{{site5.newsTitle5}}</a></td><td>{{site5.newsTime5}}</td>
+              </tr>
+            {% endfor %}
+          {% else %}
+              <td><p>現在該当のニュースはありません。</p></td><td>&nbsp;</td>
+          {% endif %}
+        </tbody>
+      </table>
+    {% endif %}
   {% endfor %}
 {% endblock content %}

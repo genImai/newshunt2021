@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+<link href="{% static 'css/setting.css' %}" rel="stylesheet">
 {% block title %}設定{% endblock title %}
 {% block h1 %}設定{% endblock h1 %}
 {% block content %}
@@ -34,26 +36,50 @@
             <input type="text" class="form-control" id="id_key3" placeholder="キーワード" name="key3" value="{{form.key3.value}}">
         </div><br>
         <h4>・検索対象サイト</h4></br>
-        <div class="form-check form-switch">
-            {{ form.site1 }}
-            <label class="form-check-label" for="id_site1">yahoo!ニュース</label>
-        </div></br>
-        <div class="form-check form-switch">
-            {{ form.site2 }}
-            <label class="form-check-label" for="id_site2">日経電子版</label>
-        </div></br>
-        <div class="form-check form-switch">
-            {{ form.site3 }}
-            <label class="form-check-label" for="id_site3">株探（材料）</label>
-        </div></br>
-        <div class="form-check form-switch">
-            {{ form.site4 }}
-            <label class="form-check-label" for="id_site4">株探（決算）</label>
-        </div></br>
-        <div class="form-check form-switch">
-            {{ form.site5 }}
-            <label class="form-check-label" for="id_site5">時事ドットコム</label>
-        </div></br>
+        <ul class="list-group">
+            <li class="list-group-item bg-primary">
+                <p class="text-light">時事系 - current events</p>
+            </li>
+            <li class="list-group-item">
+                <div class="form-check form-switch">
+                {{ form.site1 }}
+                <label class="form-check-label" for="id_site1">yahoo!ニュース</label>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="form-check form-switch">
+                {{ form.site2 }}
+                <label class="form-check-label" for="id_site2">時事ドットコム</label>
+                </div>
+            </li>
+            <li class="list-group-item bg-dark">
+                <p class="text-light">経済系 - economy</p>
+            </li>
+            <li class="list-group-item">
+                <div class="form-check form-switch">
+                {{ form.site3 }}
+                <label class="form-check-label" for="id_site3">日本経済新聞</label>
+                </div>
+            </li>
+            <li class="list-group-item bg-warning">
+                <p class="text-light">趣味系 - hobby</p>
+            </li>
+            <li class="list-group-item">
+                <div class="form-check form-switch">
+                {{ form.site4 }}
+                <label class="form-check-label" for="id_site4">ORICON NEWS</label>
+                </div>
+            </li>
+            <li class="list-group-item bg-info">
+                <p class="text-light">スポーツ系 - sports</p>
+            </li>
+            <li class="list-group-item">
+                <div class="form-check form-switch">
+                {{ form.site5 }}
+                <label class="form-check-label" for="id_site5">日刊スポーツ</label>
+                </div>
+            </li>
+        </ul>
         {% if form.non_field_errors %}
             <div class="alert alert-danger" role="alert">
                 {{form.non_field_errors}}

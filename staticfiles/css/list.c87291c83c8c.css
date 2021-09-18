@@ -1,0 +1,11 @@
+.table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.th-1 {
+    width: 70%;
+}
+.th-2 {
+    width: 30%;
+}
