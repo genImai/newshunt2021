@@ -2,6 +2,8 @@
 {% block title %}ログイン{% endblock title %}
 {% block h1 %}ログイン{% endblock h1 %}
 {% block content %}
+    {% load static %}
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
     {% if messages %}
         <ul class="messages_ul">
             {% for message in messages %}
@@ -13,17 +15,16 @@
         <div class="mb-3">
             <label for="id_email" class="form-label">メールアドレス</label>
             <input type="email" class="form-control" id="id_email" placeholder="メールアドレス" name="login" value="">
-        </div><br>
-
+        </div>
         <div class="mb-3">
             <label for="id_password" class="form-label">パスワード</label>
             <input type="password" class="form-control" id="id_password" placeholder="半角英数8文字以上" name="password" value="">
-        </div><br>
+        </div>
         <div class="d-grid gap-2 col-6 mx-auto">
             <a class="button secondaryAction" href="{% url 'account_reset_password' %}" style="text-align: center;">パスワードをお忘れですか？</a>
-            <button class="btn btn-primary" type="submit">ログイン<i class="fas fa-sign-in-alt"></i></button><br>
+            <button id="login-button" class="btn btn-primary" type="submit">ログイン<i class="fas fa-sign-in-alt"></i></button>
             <p style="text-align: center;">アカウントをお持ちでない方はこちら↓</p>
-            <a class="btn btn-success" href="{% url 'account_signup' %}">新規登録 <i class="fas fa-user-plus"></i></a><br>
+            <a class="btn btn-success" href="{% url 'account_signup' %}">新規登録 <i class="fas fa-user-plus"></i></a>
             <a class="btn btn-warning" href="{% url 'account_guest_login' %}">ゲストログイン<i class="fas fa-user-friends"></i></a>
             <p style="text-align: center;">お試しログインです。設定は保存されません。</p>
         </div><br>

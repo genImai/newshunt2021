@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-{% load static %}
-<link href="{% static 'css/list.css' %}" rel="stylesheet">
 {% block title %}ニュース一覧{% endblock title %}
 {% block h1 %}ニュース一覧{% endblock h1 %}
 {% block content %}
+  {% load static %}
+  <link href="{% static 'css/list.css' %}" rel="stylesheet">
   {% if messages %}
     <ul class="messages_ul">
       {% for message in messages %}
@@ -11,15 +11,8 @@
       {% endfor %}
     </ul>
   {% endif %}
-  <script>
-    $(function(){
-      $('.nav-link').click(function() {
-        $(this).addClass('active');
-      });
-    });
-  </script>
   {% for setting in data %}
-    <ul class="nav nav-pills bg-light">
+    <ul class="nav nav-tabs bg-light">
       <li class="nav-item">
         <a class="nav-link" id="key1" href="?key={{ setting.key1 }}"><i class="fas fa-search"></i>[{{ setting.key1 }}]</a>
       </li>
