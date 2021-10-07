@@ -1,4 +1,4 @@
-# [newsHunt](https://newshunt2021.herokuapp.com)  
+# [newsHunt](https://newshunt2021.herokuapp.com/)  
 newsHuntは複数のニュースサイトから指定した任意のキーワードを含むニュース記事を検索して一覧表示するwebアプリケーションです。  
   
 # 使用方法  
