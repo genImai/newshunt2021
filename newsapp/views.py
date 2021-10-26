@@ -127,9 +127,12 @@ def listfunc(request):
         elems = soup.find_all('p',text=re.compile(key))
             
         for elem in elems:
-            newsTitle2.append(elem.text)
-            newsLink2.append('https://www.jiji.com' + elem.parent.get('href'))
-            newsTime2.append(elem.nextSibling.text)
+            if elem.find_next_sibling(): 
+                newsTitle2.append(elem.text)
+                newsLink2.append('https://www.jiji.com' + elem.parent.get('href'))
+                newsTime2.append(elem.find_next_sibling().text)
+            else:
+                pass
             
     #日刊スポーツ(site5)
     if Setting.objects.filter(id=request.user.id).values_list('site5',flat=True):
